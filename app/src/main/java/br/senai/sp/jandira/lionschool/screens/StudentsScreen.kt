@@ -1,22 +1,25 @@
 package br.senai.sp.jandira.lionschool.screens
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
@@ -33,39 +36,51 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.lionschool.R
-import br.senai.sp.jandira.lionschool.screens.components.Courses
+import br.senai.sp.jandira.lionschool.screens.components.UserCard
 
 @Composable
-fun CoursesScreen (){
-
-    val scroll = rememberScrollState()
+fun StudentsScreen (){
 
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = Color.White)
             .padding(15.dp)
-    ){
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(120.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .height(100.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ){
-            Image(
-                painter = painterResource(
-                    R.drawable.logo
-                ),
-                contentDescription = "",
+            Row(
                 modifier = Modifier
-                    .size(80.dp)
-            )
-            Text(
-                text = "Lion \nSchool",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFF3347B0)
-            )
+                    .fillMaxHeight(),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                Image(
+                    painter = painterResource(
+                        R.drawable.logo
+                    ),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .size(80.dp)
+                )
+                Text(
+                    text = "Lion \nSchool",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color(0xFF3347B0)
+                )
+            }
+            Card(
+                modifier = Modifier
+                    .width(52.dp)
+                    .height(52.dp),
+                colors = CardDefaults.cardColors(Color(0xFFFFC23D)),
+                shape = CircleShape
+            ){ }
         }
         HorizontalDivider(
             modifier = Modifier
@@ -96,7 +111,7 @@ fun CoursesScreen (){
             ),
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 30.dp)
+                .padding(top = 16.dp)
         )
         Row(
             modifier = Modifier
@@ -106,44 +121,31 @@ fun CoursesScreen (){
         ){
             Image(
                 painter = painterResource(
-                    R.drawable.list
+                    R.drawable.graduation
                 ),
                 contentDescription = "",
                 modifier = Modifier
                     .size(40.dp)
             )
             Text(
-                text = "Courses",
+                text = "Students List",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.ExtraBold,
-                color = Color(0xFF3347B0)
+                color = Color(0xFF3347B0),
+                modifier = Modifier
+                    .padding(start = 5.dp)
             )
         }
         Column(
             modifier = Modifier
-                .padding(top = 14.dp)
-                .verticalScroll(scroll)
+                .padding(top = 13.dp)
         ){
-            Courses(
-                siglaCurso = "DS",
-                nomeCurso = "Desenvolvimento de Sistemas",
-                descricaoCurso = "Learn to develop web and mobile applications.",
-                tempoCurso = "3 semesters",
-                imageCurso = painterResource(R.drawable.sistemas)
-            )
-            Courses(
-                siglaCurso = "RDS",
-                nomeCurso = "Redes de Computadores",
-                descricaoCurso = "Learn to design communication networks.",
-                tempoCurso = "3 semesters",
-                imageCurso = painterResource(R.drawable.redes)
-            )
-            Courses(
-                siglaCurso = "ELE",
-                nomeCurso = "Eletroeletrônica",
-                descricaoCurso = "Learn to design communication networks.",
-                tempoCurso = "3 semesters",
-                imageCurso = painterResource(R.drawable.eletro)
+            UserCard(
+                nomeUser= "Luana Oliveira Dias",
+                matricula= "20151001018",
+                imageUser= painterResource(R.drawable.user1),
+                anoUser= "2022",
+                color= Color(0xFFFFC23D)
             )
         }
     }
@@ -151,6 +153,6 @@ fun CoursesScreen (){
 
 @Preview
 @Composable
-fun CoursesScreenPreview() {
-    CoursesScreen()
+fun StudentsScreenPreview() {
+    StudentsScreen()
 }
